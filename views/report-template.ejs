@@ -1,0 +1,1595 @@
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<link rel="stylesheet" href="/node_modules/chart.js/dist/Chart.min.css">
+<script src="Chart.min.js"></script>
+<script src="utils.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            letter-spacing: 0.5px;
+            font-family: 'Sarabun';
+        }
+
+        #heading {
+            font-size: 12px !important;
+            text-transform: uppercase;
+            color: #0986AE;
+            margin-bottom: 5px;
+        }
+
+        #subHeading {
+            font-style: 10px;
+        }
+
+        #topicHeading {
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+            /* padding-left: 10px; */
+        }
+
+        .font-wight {
+            text-align: right;
+            font-size: 10px;
+        }
+
+        table {
+            width: 100%;
+            font-size: 10px;
+        }
+
+        th,
+        td {
+            padding: 5px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #left {
+            float: left;
+            width: 40%;
+            height: 230px;
+        }
+
+        #right {
+            float: right;
+            width: 60%;
+            height: 230px;
+        }
+
+        #price {
+            float: right;
+            width: 30px;
+            text-align: center;
+            padding: 5px;
+            background: #95E1F9;
+        }
+
+        #greyBackground {
+            background: #6B6B6B;
+            color: #fff;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        #paraGraph {
+            margin-bottom: 15px;
+            font-size: 9px;
+        }
+
+        #result {
+            /* margin-top: 5rem; */
+            padding: 15px
+        }
+
+        #working,
+        #retirement,
+        #recommendations {
+            /* margin-top: 20rem; */
+            padding: 15px
+        }
+
+        #checklist {
+            margin-top: 70rem;
+            padding: 15px
+        }
+
+        #subHead {
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        #listItems {
+            padding: 0px 15px;
+            list-style-type: square;
+            font-size: 10px;
+            margin: 0;
+            text-align: justify;
+        }
+
+        #listItems ul>li {
+            margin-bottom: 5px;
+        }
+
+        #backgroundBlue {
+            background: #a5d3ed;
+            text-align: center;
+
+        }
+
+        #backgroundWhite {
+            background: #fff;
+            text-align: center;
+        }
+
+        #backgroundLightBlue {
+            background: #c1e9cb;
+            text-align: center;
+        }
+
+        #resultBg {
+            text-align: center;
+            background: rgba(90, 162, 120, 0.65);
+        }
+
+        #center {
+            text-align: center;
+        }
+
+        #danger {
+            text-align: center;
+            background: rgba(226, 65, 13, 0.9);
+        }
+
+        #headingBorder {
+            background: #FF7733;
+            width: 147px;
+            height: 3px;
+        }
+
+        #blueBg {
+            margin-bottom: 10px;
+            color: #0986AE;
+        }
+
+        #listItem {
+            margin-bottom: 5px;
+            font-size: 8px;
+        }
+
+        #mb-5 {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invoice-box">
+
+        <div style="text-align: center;background-color: #0986AE;padding: 1rem 3rem;color: #fff;margin-top: 10rem;">
+            <div>
+                <img class="image" src="{{image}}" alt="image not found">
+            </div>
+            <h2>FINCRAFTERS</h2>
+            <div class="bannerTexting-1 text-align-center">
+                <p>We specialize in</p>
+                <b>Retairment Statergies, IUL, Annuity, LTC and
+                    Life Policies</b>
+            </div>
+            <p style="margin-top: 5rem;"><small>prepared By</small>: Karthic Ethirajan
+                (Consult@fincrafters.com)</p>
+        </div>
+        <div>
+            <h2 style="text-align: center; font-size: 18px; font-weight: 900;color: #2c86ae">John's Personal
+                Finance Report</h2>
+        </div>
+        <p style="text-align:right;font-size: 8px;color: #c5c5c4;margin-top: 7rem;">Report generated on {{date}}</p>
+
+        <div style="margin-top:7rem;padding:15px">
+            <div>
+                <p id="heading" id="blueBg">Topics</p>
+                <div id=headingBorder></div>
+            </div>
+            <p id="topicHeading"> <span>1.</span> Snapshot of Your Finances <span style="float: right;">[1]</span>
+                </h2>
+                <p id="topicHeading"> <span>2.</span> Living Expenses Deep Dive <span style="float: right;">[2]</span>
+                    </h2>
+                    <p id="topicHeading"> <span>3.</span> Tax-Free Retirement Scenario <span
+                            style="float: right;">[3]</span>
+                        </h2>
+                        <p id="topicHeading"> <span>4.</span> Tax-Free Retirement Results <span
+                                style="float: right;">[4]</span>
+                            </h2>
+                            <p id="topicHeading"> <span>5.</span> Financial Projection During Working Years <span
+                                    style="float: right;">[5]</span></h2>
+                                <p id="topicHeading"> <span>6.</span> Financial Projection During Retirement<span
+                                        style="float: right;">[6]</span>
+                                    </h2>
+                                    <p id="topicHeading"> <span>7.</span> Recommendations <span
+                                            style="float: right;">[7]</span></h2>
+                                        <p id="topicHeading"> <span>8.</span> Financial planning checklist <span
+                                                style="float: right;">[8]</span>
+                                            </h2>
+                                            <p style="color: #5D6170; margin-top:22rem;font-size:8px ;"> Disclaimer :
+                                                This material does
+                                                not constitute tax, legal or
+                                                investment advice.
+                                                Always, consult with
+                                                your licensed advisors regarding your personal circumstances.</p>
+        </div>
+        <div style="margin-top:7rem;padding:0px 15px">
+            <div>
+                <p id="heading" id="blueBg">Snapshot of Your Finances</p>
+                <div id=headingBorder></div>
+            </div>
+            <p id="subHead">Current view of your yearly cash outlay and tax diversification
+                of assets</p>
+        </div>
+        <div class="annualCashFlow" style="padding:0px 15px">
+            <p id="topicHeading">Annual Cash Flow</p>
+            <div id="left">
+                <table>
+                    <tr style="height: 30px;color: rgba(23, 29, 51, 0.7);">
+                        <td style="font-size: 10px;">Income</td>
+                        <td class="font-wight">$160,000</td>
+                    </tr>
+                    <tr style="height: 30px;color: rgba(23, 29, 51, 0.7);">
+                        <td style="font-size: 10px;">Living Expense</td>
+                        <td class="font-wight">$50,000</td>
+                    </tr>
+                    <tr style="height: 30px;color: rgba(23, 29, 51, 0.7);">
+                        <td style="font-size: 10px;">Housing</td>
+                        <td class="font-wight">$36,000</td>
+                    </tr>
+                    <tr style="height: 30px;color: rgba(23, 29, 51, 0.7);">
+                        <td style="font-size: 10px;">Income Tax</td>
+                        <td class="font-wight">$40,000</td>
+                    </tr>
+                    <tr style="height: 30px;color: rgba(23, 29, 51, 0.7);">
+                        <td style="font-size: 10px;">Savings</td>
+                        <td class="font-wight">$40,000</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="right">
+            	<canvas id="myChart1" width="1200" height="1080"></canvas>
+            </div>
+            <div class="info" style="padding-bottom: 1rem;border-bottom: 2px dashed rgba(0, 0, 0, 0.7);">
+                <ul style="padding: 0;list-style: none;">
+                    <li id="listItem">■ For a good balanced budget, the four categories
+                        should be roughly
+                        equal</li>
+                    <li id="listItem">■ Relative to your income,</li>
+                    <ul style="padding: 0;list-style: none;margin-left: 15px;">
+                        <li id="listItem"> ○ You have a healthy savings rate</li>
+                        <li id="listItem"> ○ You have higher living expenses</li>
+                    </ul>
+                </ul>
+            </div>
+
+        </div>
+        <div class="asserAllocation" style="padding:15px">
+            <p id="topicHeading">Asset Allocation</p>
+
+            <div id="left">
+                <table>
+                    <tr style="height: 30px;color: rgba(23, 29, 51, 0.7);">
+                        <td>
+                            <p style="margin: 0; font-size: 10px;">Pre-Tax</p>
+                            <span style="font-size: 8px;">(e.g., 401k, Traditional IRA)</span>
+                        </td>
+                        <td class="font-wight">$160,000</td>
+                    </tr>
+                    <tr style="height: 30px;color: rgba(23, 29, 51, 0.7);">
+                        <td>
+                            <p style="margin: 0; font-size: 10px;">Post-Tax</p>
+                            <span style="font-size: 8px;">(e.g., 401k, Traditional IRA)</span>
+                        </td>
+                        <td class="font-wight">$50,000</td>
+                    </tr>
+                    <tr style="height: 30px;color: rgba(23, 29, 51, 0.7);">
+                        <td>
+                            <p style="margin: 0; font-size: 10px;">Taxable</p>
+                            <span style="font-size: 8px;">(e.g., 401k, Traditional IRA)</span>
+                        </td>
+                        <td class="font-wight">$36,000</td>
+                    </tr>
+                    <tr style="height: 30px;color: rgba(23, 29, 51, 0.7);">
+                        <td>
+                            <p style="margin: 0; font-size: 10px;">Real estate</p>
+                            <span style="font-size: 8px;">(e.g., 401k, Traditional IRA)</span>
+                        </td>
+                        <td class="font-wight">$40,000</td>
+                    </tr>
+                    <tr style="height: 30px;color: rgba(23, 29, 51, 0.7);">
+                        <td style="font-size: 10px;">Total</td>
+                        <td class="font-wight">$40,000</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="right">
+             	<canvas id="myChart2" width="1200" height="1080"></canvas>
+            </div>
+            <div class="info">
+                <ul style="padding: 0;list-style: none;">
+                    <li id="listItem">■ Reduce buildup of Pre-Tax asset by reallocating
+                        savings to Post-Tax
+                        should be roughly
+                        equal</li>
+                    <li id="listItem"> ■ Buying a house will reallocate Taxable asset to
+                        Real Estate bucket</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="livingExpense" style="padding:15px">
+            <div>
+                <p id="heading" id="blueBg">Living Expenses Deep Dive</p>
+                <div id=headingBorder></div>
+            </div>
+            <p id="subHead">You are spending 34% less than the benchmark</p>
+            <div style="height: 250px; width: 300px;margin: 0 auto;">
+            	<canvas id="myChart3" width="1200" height="1080"></canvas>
+            </div>
+            <div class="info">
+                <ul style="padding: 0;list-style: none;">
+                    <li id="listItem">■ Your expense items in the table are color coded
+                        relative to the benchmark.</li>
+                    <li id="listItem"> ■ Your Restaurant, Outdoor Entertainment and
+                        Supplies expenses are higher than the benchmark.</li>
+                </ul>
+            </div>
+
+            <div>
+                <table class="width-100">
+                    <thead>
+                        <tr style="background: #6B6B6B;color: #fff;text-transform: uppercase;">
+                            <td id="center" colspan="2">Monthly Expenses</td>
+                            <td id="center">Benchmark</td>
+                            <td id="center">You</td>
+                            <td id="center">Variance</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td rowspan="4">Utilities</td>
+                            <td>Internet</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+                        <tr>
+                            <td>Phone</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+                        <tr>
+                            <td>Electricity & Gas</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+                        <tr>
+                            <td>Water, Sewer & Trash</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="4">Car</td>
+                            <td>Insurance</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+                        <tr>
+                            <td>Maintainance</td>
+                            <td id="center">$50</td>
+                            <td id="danger">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+                        <tr>
+                            <td>Loan/Lease Payment</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+                        <tr>
+                            <td>Gas</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="2">Food</td>
+                            <td>Groceries</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+                        <tr>
+                            <td>Restaurant</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+
+
+                        <tr>
+                            <td rowspan="4">Personal</td>
+                            <td>Gym / Wellness</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+                        <tr>
+                            <td>Salon</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+                        <tr>
+                            <td>TV</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+                        <tr>
+                            <td>Outdoor Entertainment</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+
+
+                        <tr>
+                            <td rowspan="2">Medical</td>
+                            <td>Insurance</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+                        <tr>
+                            <td>Copays</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="3">Home Maintenace</td>
+                            <td>Gym / Wellness</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+                        <tr>
+                            <td>Salon</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+                        <tr>
+                            <td>TV</td>
+                            <td id="center">$50</td>
+                            <td id="danger">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="2">Kids</td>
+                            <td>Kid’s Classes / Summer Camp</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+                        <tr>
+                            <td>Day Care</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td id="center">9%</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">Cash Transaction</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td style="text-align: center;">-14%</td>
+                        </tr>
+                        <tr style="font-weight: bold;">
+                            <td colspan="2">Monthly Total</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td style="text-align: center;">-14%</td>
+                        </tr>
+                        <tr style="font-weight: bold;">
+                            <td colspan="2">Annual Total</td>
+                            <td id="center">$50</td>
+                            <td id="resultBg">$55</td>
+                            <td style="text-align: center;">-14%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div style="padding:15px ;margin-top: 8rem">
+            <table class="width-100 pt-50">
+                <thead>
+                    <th id="greyBackground">Annual
+                        Expenses</th>
+                    <th id="greyBackground">Benchmark
+                    </th>
+                    <th id="greyBackground">You</th>
+                    <th id="greyBackground">Variance
+                    </th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="center">Travel</td>
+                        <td id="center">$67</td>
+                        <td id="center">$50</td>
+                        <td id="center">9%</td>
+                    </tr>
+                    <tr>
+                        <td id="center">Travel</td>
+                        <td id="center">$67</td>
+                        <td id="center">$50</td>
+                        <td id="center">9%</td>
+                    </tr>
+                    <tr>
+                        <td id="center">Annual Living Expences</td>
+                        <td id="center">$50</td>
+                        <td id="center">$55</td>
+                        <td id="center">9%</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div style="margin-top: 30px;padding:15px">
+            <table class="width-100 pt-50">
+                <thead>
+                    <tr style="background: #F4F4F4; height: 25px; font-weight: bold;">
+                        <td>Annual Living Expenses</td>
+                        <td>$50 </td>
+                        <td style="background: rgba(90, 162, 120, 0.65)">$55 </td>
+                        <td>9%</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div id="scenario" style="padding:15px; margin:7rem 0px;" class="pageDesign taxFree-wrapper ">
+            <div>
+                <p id="heading" id="blueBg">Tax-Free Retirement Scenario</p>
+                <div id=headingBorder></div>
+            </div>
+            <div>
+                <p id="subHead">Your Human Capital is $4.2M and Financial Capital is
+                    $3M</p>
+                <div style="margin: 0 auto;width: 350px;height: 250px;">
+                 	<canvas id="myChart4" width="1200" height="1080"></canvas>
+				 </div>
+                <div class="info">
+                    <ul style="padding: 0;list-style: none;">
+                        <li id="listItem">■ Human Capital is your lifetime earning
+                            potential. It declines with age.</li>
+                        <li id="listItem"> ■ Financial Capital is your asset value. It
+                            usually grows during your working life and
+                            declines during retirement.</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="font-size:10px;display: block;height: 350px;">
+                <div id="left" style="height: 100%;width: 261px;border: 1px dotted #000;padding: 5px;">
+                    <h5 style="font-style: italic;text-transform: uppercase">WHEN WORKING</h5>
+                    <div class="tableContent">
+                        <p id="paraGraph"> Current Age <span id="price">40 </span></p>
+                        <p id="paraGraph">Single/Couple <span id="price">1 </span></p>
+                        <p id="paraGraph">Annual Income <span id="price">$160k</span></p>
+                        <p id="paraGraph"> Savings Rate <span id="price">21% </span></p>
+                        <p id="paraGraph">Pre-Tax Asset <span class="blue-block text-align-center" id="price">
+                                $350k</span></p>
+                        <p id="paraGraph">Post-Tax Asset <span class="blue-block text-align-center" id="price">
+                                $50k</span></p>
+                        <p id="paraGraph"> Taxable Asset <span id="price">$150k</span></p>
+                        <p id="paraGraph">Future Age if Buying a Prime Home <span id="price">45</span></p>
+                        <p id="paraGraph">Down Payment Needed for Primary Home <span id="price">$250k </span></p>
+                        <p id="paraGraph"> Income growth <span id="price">3.6% </span></p>
+                        <p id="paraGraph"> Market Growth During Working Years <span id="price">8.0% </span></p>
+                    </div>
+                </div>
+                <div id="right" style="height: 100%;width: 280px;border: 1px dotted #000;padding: 5px;">
+                    <div class="inner-padding">
+                        <h5 style="font-style: italic;text-transform: uppercase">Retirement Years</h5>
+                        <div class="tableContent">
+
+                            <p id="paraGraph"> Want to Retire at <span class="blue-block text-align-center" id="price">
+                                    40
+                                </span>
+                            </p>
+                            <p id="paraGraph">Life Expectancy <span class="blue-block text-align-center" id="price">
+                                    95
+                                </span>
+                            </p>
+                            <p id="paraGraph">Minimum Intended Legacy <span class="blue-block text-align-center"
+                                    id="price">
+                                    $220k
+                                </span>
+                            </p>
+                            <p id="paraGraph">Market growth during Retirement Years
+                                <span class="blue-block text-align-center" id="price">
+                                    $220k
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <p
+                        style="margin-bottom: 15px; font-weight: bold; border-top: 1px dashed rgba(0, 0, 0, 0.7);padding-top: 10px; ;">
+                        Lifetime Inflation
+                        <span class="blue-block text-align-center" id="price">
+                            2.0%
+                        </span>
+                    </p>
+                    <p>Model in Real or Nominal terms(Enter 0 or 1) <span class="blue-block text-align-center"
+                            id="price">1
+                        </span>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="result">
+            <div>
+                <p id="heading" id="blueBg">Tax-Free Retirement Results</p>
+                <div id=headingBorder></div>
+                <p id="subHead">Your max inflation-adjusted retirement income is $119K of
+                    which 43% is tax-free</p>
+            </div>
+            <div>
+                <p style="
+            background: #0986AE;padding: 5px;color: #fff;font-weight: bold;">
+                    Income</p>
+                <p style="font-size: 12px;font-weight:bold">WHEN WORKING</p>
+                <div style="color: rgba(23, 29, 51, 0.7);font-size: 10px;">
+                    <p class="my-0" id="mb-5"> Annual income before retirement <span style="float: right;">40</span>
+                    </p>
+                    <p class="my-0" id="mb-5"> Lifetime income <span style="float: right;">40</span>
+                    </p>
+                    <p class="my-0" id="mb-5">Optimal allocation of retirement savings to Pre-Tax
+                        <span style="float: right;">40</span> </p>
+                </div>
+                <p style="font-size: 12px;font-weight:bold" class="">WHEN RETAIRED</p>
+                <div style="color: rgba(23, 29, 51, 0.7);font-size: 10px;">
+                    <p class="my-0" id="mb-5"> Annual withdrawal as a % of pre-retirement income <span
+                            style="float: right;">40</span></p>
+                    <p class="my-0" id="mb-5"> Annual withdrawal as a % of assets at retirement <span
+                            style="float: right;">40</span></p>
+                    <p class="my-0" id="mb-5">Tax-free portion of annual withdrawal <span
+                            style="float: right;">40</span></p>
+                </div>
+            </div>
+
+            <div class="asset">
+                <p style="
+            background: #0986AE;padding: 5px;color: #fff;font-weight: bold;">
+                    Asset</p>
+                <table class="width-100">
+                    <thead>
+                        <td id="greyBackground"></td>
+                        <td id="greyBackground">NOW
+                        </td>
+                        <td id="greyBackground">At
+                            retirement</td>
+                        <td id="greyBackground">At EOL
+                        </td>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pre-Tax</td>
+                            <td>
+                                <span>$356k</span>
+                                <span>(64%)</span>
+                            </td>
+                            <td>
+                                <span>$356k</span>
+                                <span>(64%)</span>
+                            </td>
+                            <td>
+                                <span>$356k</span>
+                                <span>(64%)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>post-Tax</td>
+                            <td>
+                                <span>$356k</span>
+                                <span>(64%)</span>
+                            </td>
+                            <td>
+                                <span>$356k</span>
+                                <span>(64%)</span>
+                            </td>
+                            <td>
+                                <span>$356k</span>
+                                <span>(64%)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Taxable</td>
+                            <td>
+                                <span>$356k</span>
+                                <span>(64%)</span>
+                            </td>
+                            <td>
+                                <span>$356k</span>
+                                <span>(64%)</span>
+                            </td>
+                            <td>
+                                <span>$356k</span>
+                                <span>(64%)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td>
+                                <span>$356k</span>
+                            </td>
+                            <td>
+                                <span>$356k</span>
+                            </td>
+                            <td>
+                                <span>$356k</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div id="working">
+            <div>
+                <p id="heading" id="blueBg">Financial Projection During Working Years
+                </p>
+                <div id=headingBorder></div>
+            </div>
+            <div style="margin-top: 30px;">
+                <table class="width-100 pt-50">
+                    <thead>
+                        <tr style="background: #0986AE;">
+                            <td colspan="2"></td>
+                            <td colspan="4" style="text-align: center;color:#fff;text-transform: uppercase;">Savings
+                            </td>
+                            <td colspan="4" style="text-align: center;color:#fff;text-transform: uppercase;">Assets</td>
+                        </tr>
+                        <tr class="header2">
+                            <td id="greyBackground">Age</td>
+                            <td id="greyBackground">Income</td>
+
+                            <td id="greyBackground">pre-tax</td>
+                            <td id="greyBackground">post-tax</td>
+                            <td id="greyBackground">Taxable</td>
+                            <td id="greyBackground">Total</td>
+
+                            <td id="greyBackground">pre-tax</td>
+                            <td id="greyBackground">post-tax</td>
+                            <td id="greyBackground">Taxable</td>
+                            <td id="greyBackground">Total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="retirement">
+            <div>
+                <p id="heading" id="blueBg">Financial Projection During Retirement</p>
+                <div id=headingBorder></div>
+            </div>
+            <div style="margin-top: 30px;">
+                <table class="width-100 pt-50">
+                    <thead>
+                        <tr style="background: #0986AE;">
+                            <td colspan="2"></td>
+                            <td colspan="4" style="text-align: center;color:#fff;text-transform: uppercase;">Retirement
+                                Income</td>
+                            <td colspan="4" style="text-align: center;color:#fff;text-transform: uppercase;">Assets</td>
+                        </tr>
+                        <tr class="header2">
+                            <td id="greyBackground">Age</td>
+                            <td id="greyBackground">Income</td>
+                            <td id="greyBackground">pre-tax</td>
+                            <td id="greyBackground">post-tax</td>
+                            <td id="greyBackground">Taxable</td>
+                            <td id="greyBackground">Total</td>
+                            <td id="greyBackground">pre-tax</td>
+                            <td id="greyBackground">post-tax</td>
+                            <td id="greyBackground">Taxable</td>
+                            <td id="greyBackground">Total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                        <tr>
+                            <td id="backgroundWhite">25</td>
+                            <td id="backgroundWhite">$55K</td>
+
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+                            <td id="backgroundBlue">$55K</td>
+
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                            <td id="backgroundLightBlue">$55K</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="recommendations">
+            <div>
+                <p id="heading" id="blueBg">Recommendations</p>
+                <div id=headingBorder></div>
+            </div>
+            <div>
+                <ul style="padding: 15px;margin: 0;  list-style: none;list-style-type: square; font-size: 10px; ">
+                    <li id="mb-5">Your savings to Taxable accounts exceeds that of Pre-Tax + Post-Tax
+                        at age 48.
+                        That is a good time to reallocate assets from Taxable to Post-Tax using methods
+                        described below.</li>
+                    <li id="mb-5">Even with optimal allocation of savings your Pre-Tax is still too
+                        large.
+                        To maximize your tax-free retirement income your Pre-Tax asset should be at ~$294K
+                        when you retire at age 62. Reallocate out of Pre-Tax using methods described below.</li>
+                    <li id="mb-5">Generate additional streams of tax-free retirement income by,
+                        <ul style="margin-top:15px;list-style: none;list-style-type: circle; ">
+                            <li id="mb-5">Investing in an Annuity product from within Roth IRA
+                                account </li>
+                            <li id="mb-5">Investing in an IUL product</li>
+                            <li id="mb-5">Social security benefits will also not be taxable in a near
+                                tax-free retirement
+                                scenario</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <p style="padding: 5px;color:#fff;text-transform: uppercase;background: #0986AE;">Additional
+                    Insights</p>
+                <p style="font-size: 12px;">To achieve optimal allocation of assets between different tax buckets you
+                    can,</p>
+                <ul style="padding: 0px 15px;margin: 0;  list-style: none;list-style-type: square; font-size: 10px; ">
+                    <li id="mb-5">Move assets from Pre-tax to Post-tax bucket using Roth Conversion
+                    </li>
+                    <li id="mb-5">Move assets from Pre-Tax to Taxable bucket using SEPP or Rule 72(t)
+                    </li>
+                    <li id="mb-5">Move assets from Taxable to Post-Tax bucket using IUL investment &
+                        After-Tax 401k plan
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div id="checklist">
+            <div>
+                <p id="heading" id="blueBg">Financial Planning Checklist</p>
+                <div id=headingBorder></div>
+            </div>
+
+            <div id="left" style="height: auto;width: 240px;padding-right: 15px; border-right: 1px dotted #000;">
+                <div>
+                    <p id="subHead">Cash Flow</p>
+                    <ul id="listItems">
+                        <li id="mb-5">Be aware of your expenses. Do they add up to your income minus savings?</li>
+                        <li id="mb-5"> Keep your financial capital on track </li>
+                        <li id="mb-5">Know your human capital</li>
+                    </ul>
+                </div>
+                <div>
+                    <p id="subHead">Retirement Planning</p>
+                    <ul id="listItems">
+                        <li id="mb-5">Strive for near 0% income tax rate</li>
+                        <li id="mb-5"> Understand Social Security benefits and when to avail them </li>
+                        <li id="mb-5"> Plan to meet living expenses with tax-free annuity plan </li>
+                        <li id="mb-5">Keep a cash cushion using IUL and home line of credit</li>
+                        <li id="mb-5">Estimate your maximum withdrawal amount as retirement income </li>
+                        <li id="mb-5">Understand retirement risks arising from market condition, government behaviors,
+                            personal situation, etc.</li>
+                    </ul>
+                </div>
+                <div>
+                    <p id="subHead"> Estate Planning</p>
+                    <ul id="listItems">
+                        <li id="mb-5">Prepare a Will and Living Trust to avoid probate</li>
+                        <li id="mb-5"> Think about creative ways to reduce estate tax, such as ILIT for HNW individuals
+                        </li>
+                        <li id="mb-5">Structure appropriate trust such as CRT when making sizeable charity contributions
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <p id="subHead">Real Estate</p>
+                    <ul id="listItems">
+                        <li id="mb-5"> Understand the economics of home buying (rent vs. buy, PITI, etc.)</li>
+                        <li id="mb-5"> Understand 1031 exchange for investment properties </li>
+                        <li id="mb-5">Don’t get overexposed to real estate as an asset class</li>
+                    </ul>
+                </div>
+                <div>
+                    <p id="subHead"> Life Insurance </p>
+                    <ul id="listItems">
+                        <li id="mb-5">Carry adequate life insurance to cover the living needs of your family while you
+                            are
+                            working</li>
+                    </ul>
+                </div>
+
+
+            </div>
+            <div id="right" style="height: auto;width: 260px;">
+                <div>
+                    <p id="subHead">Portfolio Planning</p>
+                    <ul id="listItems">
+                        <li id="mb-5"> Diversify across asset classes (stocks, bonds, etc.), sectors (tech, finance,
+                            etc.), and stocks</li>
+                        <li id="mb-5"> Rebalance annually if you maintain a fixed allocation portfolio </li>
+                        <li id="mb-5">Neutralize capital gains by selling select lossy positions before year end</li>
+                    </ul>
+                </div>
+                <div>
+                    <p id="subHead">Tax Diversification</p>
+                    <ul id="listItems">
+                        <li id="mb-5"> Shelter savings in taxable accounts with tax-free IUL product</li>
+                        <li id="mb-5"> Utilize tax-free savings vehicles such as Roth 401k, Roth IRA and HSA</li>
+                        <li id="mb-5">Limit accumulation in tax-deferred accounts such as 401k and Traditional IRA</li>
+                        <li id="mb-5">Use Roth conversion to periodically transfer excess funds from tax-deferred to
+                            tax-free account</li>
+                    </ul>
+                </div>
+                <div>
+                    <p id="subHead">Healthcare</p>
+                    <ul id="listItems">
+                        <li id="mb-5"> Enroll in HDHP to save using tax-free HSA</li>
+                        <li id="mb-5"> Plan coverage for debilitating conditions in old age using a LTC policy or living
+                            benefits from IUL or Annuity </li>
+                        <li id="mb-5">Enhance coverage with a Medicare Supplement policy</li>
+                    </ul>
+                </div>
+                <div>
+                    <p id="subHead">College Planning</p>
+                    <ul id="listItems">
+                        <li id="mb-5">Estimate college costs & develop a savings plan </li>
+                        <li id="mb-5"> Know that 529 plan withdrawals are tax-free, but also count against financial aid
+                        </li>
+                        <li id="mb-5"> Understand FAFSA process and how the underlying components affect financial aid
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <p id="subHead">Learn Math</p>
+                    <ul id="listItems">
+                        <li id="mb-5"> Learn how money grows by understanding the effect of inflation, taxes, compounded
+                            growth, volatility, etc.</li>
+                        <li id="mb-5"> Learn the elegant Rule of 72 </li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <script>
+		var content1 = document.getElementById('myChart1');
+		var content2 = document.getElementById('myChart2');
+		var content3 = document.getElementById('myChart3');
+		var content4 = document.getElementById('myChart4');
+
+		var myChart1 = new Chart(content1, {
+			type: 'doughnut',
+			data: {
+				labels: ['After Retirement', 'Before Retirement', 'Working', 'Lifetime'],
+				datasets: [{
+					label: 'Financial report',
+					data: [12, 18, 20, 48],
+					backgroundColor: [
+						'rgba(240,98,132,1)',
+						'rgba(246,157,73,1)',
+						'rgba(252, 204, 96, 1)',
+						'rgba(75, 192, 192, 1)'
+					],
+					borderWidth: '1px',
+					options: {
+						responsive: true,
+						maintainAspectRatio: false
+					}
+				}]
+			}
+		});
+		var myChart2 = new Chart(content2, {
+			type: 'doughnut',
+			data: {
+				labels: ['After Retirement', 'Before Retirement', 'Working', 'Lifetime'],
+				datasets: [{
+					label: 'Financial report',
+					data: [12, 18, 20, 48],
+					backgroundColor: [
+						'rgba(240,98,132,1)',
+						'rgba(246,157,73,1)',
+						'rgba(252, 204, 96, 1)',
+						'rgba(75, 192, 192, 1)'
+					],
+					borderWidth: '1px',
+					options: {
+						responsive: true,
+						maintainAspectRatio: false
+					}
+				}]
+			}
+		});
+		var myChart3 = new Chart(content3, {
+			type: 'doughnut',
+			data: {
+				labels: ['After Retirement', 'Before Retirement', 'Working', 'Lifetime'],
+				datasets: [{
+					label: 'Financial report',
+					data: [12, 18, 20, 48],
+					backgroundColor: [
+						'rgba(240,98,132,1)',
+						'rgba(246,157,73,1)',
+						'rgba(252, 204, 96, 1)',
+						'rgba(75, 192, 192, 1)'
+					],
+					borderWidth: '1px',
+					options: {
+						responsive: true,
+						maintainAspectRatio: false
+					}
+				}]
+			}
+		});
+		var myChart4 = new Chart(content4, {
+			type: 'doughnut',
+			data: {
+				labels: ['After Retirement', 'Before Retirement', 'Working', 'Lifetime'],
+				datasets: [{
+					label: 'Financial report',
+					data: [12, 18, 20, 48],
+					backgroundColor: [
+						'rgba(240,98,132,1)',
+						'rgba(246,157,73,1)',
+						'rgba(252, 204, 96, 1)',
+						'rgba(75, 192, 192, 1)'
+					],
+					borderWidth: '1px',
+					options: {
+						responsive: true,
+						maintainAspectRatio: false
+					}
+				}]
+			}
+		});
+
+	</script>
+</body>
+
+</html>
